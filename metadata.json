@@ -1,0 +1,6 @@
+{
+  "name": "Manga Screentone Studio",
+  "description": "專業黑白漫畫網點與手稿後製工作台 - 支援雙解析度 Proxy 畫布、封閉墨線魔術棒填網、8點方格任意變形、美工刀刮網與高畫質手稿匯出",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -34,7 +34,12 @@ export const SAMPLE_MANUSCRIPTS: SampleManuscript[] = [
         ctx.drawImage(img, ox, oy, dw, dh);
         if (onDone) onDone();
       };
-      img.src = '/assets/aistudio/20261101_102828463__1__11af9466.JPG';
+      img.onerror = () => {
+        // Fallback drawing if local photo asset fails to load in remote environments
+        SAMPLE_MANUSCRIPTS[1].render(canvas, onDone);
+      };
+      const base = (import.meta.env.BASE_URL || './').replace(/\/+$/, '');
+      img.src = `${base}/assets/aistudio/20261101_102828463__1__11af9466.JPG`;
     },
   },
   {

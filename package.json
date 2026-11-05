@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build && cp dist/index.html dist/404.html",
+    "build": "vite build && cp dist/index.html dist/404.html && rm -rf docs && cp -r dist docs",
+    "start": "vite preview --port 3000 --host 0.0.0.0",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
+    "clean": "rm -rf dist docs server.js",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

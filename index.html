@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant" class="dark">
+<html lang="zh-Hant" class="dark" style="background-color: #0c0e12; color: #f1f5f9; margin: 0; padding: 0; width: 100%; height: 100%;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -12,9 +12,75 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      html, body {
+        background-color: #0c0e12;
+        color: #f1f5f9;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      @keyframes studioSpin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+    <script>
+      // 1. Ensure trailing slash on GitHub Pages directory URLs so relative assets resolve properly
+      (function() {
+        var path = window.location.pathname;
+        if (path && !path.endsWith('/') && !path.split('/').pop().includes('.')) {
+          window.history.replaceState(null, '', path + '/' + window.location.search + window.location.hash);
+        }
+      })();
+
+      // 2. Auto-redirect to compiled /docs/ if user deployed root folder to GitHub Pages
+      (function() {
+        var host = window.location.hostname;
+        var isLocal = host === 'localhost' || host === '127.0.0.1' || window.location.port === '3000';
+        if (!isLocal) {
+          var p = window.location.pathname;
+          // If we are at root and not already inside /docs/ or /dist/
+          if (!p.includes('/docs') && !p.includes('/dist')) {
+            var target = p.endsWith('/') ? p + 'docs/' : p + '/docs/';
+            window.location.replace(target + window.location.search + window.location.hash);
+          }
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-[#0e1015] text-slate-100 antialiased overflow-hidden select-none font-sans">
-    <div id="root"></div>
+  <body class="bg-[#0c0e12] text-slate-100 antialiased overflow-hidden select-none font-sans" style="background-color: #0c0e12; color: #f1f5f9; margin: 0; padding: 0; width: 100%; height: 100%;">
+    <div id="root">
+      <div id="app-preloader" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0c0e12; color: #f1f5f9; text-align: center; padding: 24px; box-sizing: border-box;">
+        <div style="width: 52px; height: 52px; border-radius: 14px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.4); display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 16px;">
+          ✒️
+        </div>
+        <h1 style="font-size: 18px; font-weight: 700; margin: 0 0 8px 0; color: #f8fafc; letter-spacing: 0.5px;">Manga Screentone Studio</h1>
+        <p style="font-size: 13px; color: #94a3b8; margin: 0 0 16px 0;">漫畫網點與手稿後製工作台載入中…</p>
+        <div id="preloader-spinner" style="width: 22px; height: 22px; border: 2.5px solid rgba(59, 130, 246, 0.2); border-top-color: #3b82f6; border-radius: 50%; animation: studioSpin 0.8s linear infinite;"></div>
+        <div id="preloader-diag" style="display: none; margin-top: 24px; max-width: 500px; background: #131722; border: 1px solid #334155; border-radius: 12px; padding: 16px; text-align: left; font-size: 12px; line-height: 1.6; color: #cbd5e1;">
+          <div style="font-weight: 700; color: #38bdf8; margin-bottom: 6px; font-size: 13px;">💡 GitHub Pages 網站發布指引</div>
+          <div>若您上傳程式到 GitHub 並建立了網站名稱，請進入倉庫：</div>
+          <ol style="margin: 6px 0; padding-left: 20px;">
+            <li>點擊 <strong>Settings → Pages</strong></li>
+            <li>在 <strong>Build and deployment → Source</strong> 下拉選單選擇 <strong>「GitHub Actions」</strong></li>
+            <li>GitHub 便會自動啟動專案內建的自動編譯流水線發布，不再出現空白頁。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <script>
+      setTimeout(function() {
+        var diag = document.getElementById('preloader-diag');
+        var spinner = document.getElementById('preloader-spinner');
+        if (diag && document.getElementById('app-preloader')) {
+          diag.style.display = 'block';
+          if (spinner) spinner.style.display = 'none';
+        }
+      }, 3500);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
